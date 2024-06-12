@@ -5,6 +5,7 @@ import Sentiment from 'sentiment';
 import * as fs from 'fs'
 import csv from 'csv-parser'
 import { stringify } from 'querystring';
+import cors from 'cors'
 
 const sentiment = new Sentiment()
 let results = []
@@ -17,7 +18,7 @@ fs.createReadStream('netflix_reviews.csv')
 
 const app = express();
 app.use(express.json());
-
+app.use(cors())
 const port = 3000;
 
 const apiKey = process.env.MISTRALAI_API_KEY;

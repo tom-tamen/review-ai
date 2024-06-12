@@ -33,7 +33,7 @@
                         <p class="text-gray-700 text-center">CEO of Apple</p>
                     </div>
                 </div>
-                <p class="text-black text-lg mt-5">"Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. </p>
+                <p class="text-black text-lg mt-5 content" ></p>
             </swiper-slide>
             <swiper-slide class="flex start gap-5">
                 <div class="flex flex-col justify-center gap-5 min-w-[150px]">
@@ -43,7 +43,7 @@
                         <p class="text-gray-700 text-center">COE of Apple</p>
                     </div>
                 </div>
-                <p class="text-black text-lg mt-5">"Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. </p>
+                <p class="text-black text-lg mt-5 resume">"Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. </p>
             </swiper-slide>
             <swiper-slide class="flex start gap-5">
                 <div class="flex flex-col justify-center gap-5 min-w-[150px]">
@@ -66,10 +66,43 @@
                 <p class="text-black text-lg mt-5">"Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. </p>
             </swiper-slide>
         </swiper-container>
+
+        <p class="resume"></p>
+
+        <ul class="osef">
+            
+        </ul>
     </div>
     
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    
+
+
+    <script>
+        fetch('http://localhost:3000/api/reviews')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                const ulEl = document.querySelector('ul.osef')
+                const resume = data[0]
+                document.querySelector('p.resume').textContent = resume
+                data.forEach((element, i) => {
+                    if(i === 0) return
+                    const liEl = document.createElement("li")
+                    liEl.textContent = element.content
+                    ulEl.appendChild(liEl)
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    </script>
       
 </body>
 </html>
