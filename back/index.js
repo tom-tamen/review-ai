@@ -39,7 +39,8 @@ app.get('/api/reviews', async (req, res) => {
         negative: a.negative
       },
       content: item.content,
-      rating: item.score
+      rating: item.score,
+      userName: item.userName
     }
     resp.push(s)
   }
