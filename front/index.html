@@ -24,52 +24,14 @@
     </nav>
     <div class="mt-16 px-[70px]">
         <swiper-container class="mySwiper mt-8" space-between="30"
-        slides-per-view="2" autoplay-delay="2500">
-            <swiper-slide class="flex start gap-5">
-                <div class="flex flex-col justify-center gap-5 min-w-[150px]">
-                    <img src="img/woman.jpg" alt="" class="h-[150px] w-[150px] object-cover rounded-full border-4 border-black">
-                    <div class="space-y-1">
-                        <p class="text-gray-700 text-center">Mia Malkova</p>
-                        <p class="text-gray-700 text-center">CEO of Apple</p>
-                    </div>
-                </div>
-                <p class="text-black text-lg mt-5 content" ></p>
-            </swiper-slide>
-            <swiper-slide class="flex start gap-5">
-                <div class="flex flex-col justify-center gap-5 min-w-[150px]">
-                    <img src="img/woman.jpg" alt="" class="h-[150px] w-[150px] object-cover rounded-full border-4 border-black">
-                    <div class="space-y-1">
-                        <p class="text-gray-700 text-center">Mia Malkova</p>
-                        <p class="text-gray-700 text-center">COE of Apple</p>
-                    </div>
-                </div>
-                <p class="text-black text-lg mt-5 resume">"Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. </p>
-            </swiper-slide>
-            <swiper-slide class="flex start gap-5">
-                <div class="flex flex-col justify-center gap-5 min-w-[150px]">
-                    <img src="img/woman.jpg" alt="" class="h-[150px] w-[150px] object-cover rounded-full border-4 border-black">
-                    <div class="space-y-1">
-                        <p class="text-gray-700 text-center">Mia Malkova</p>
-                        <p class="text-gray-700 text-center">COE of Apple</p>
-                    </div>
-                </div>
-                <p class="text-black text-lg mt-5">"Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. </p>
-            </swiper-slide>
-            <swiper-slide class="flex start gap-5">
-                <div class="flex flex-col justify-center gap-5 min-w-[150px]">
-                    <img src="img/woman.jpg" alt="" class="h-[150px] w-[150px] object-cover rounded-full border-4 border-black">
-                    <div class="space-y-1">
-                        <p class="text-gray-700 text-center">Mia Malkova</p>
-                        <p class="text-gray-700 text-center">COE of Apple</p>
-                    </div>
-                </div>
-                <p class="text-black text-lg mt-5">"Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Quisquam, voluptates. </p>
-            </swiper-slide>
+        slides-per-view="1" autoplay-delay="2500">
+            
         </swiper-container>
 
-        <p class="resume"></p>
+        <h2 class="text-lg font-bold mt-8">Notice resume : </h2>
+        <p class="resume text-white opacity-0"></p>
 
-        <ul class="osef">
+        <ul class="osef text-white">
             
         </ul>
     </div>
@@ -92,11 +54,23 @@
                 const ulEl = document.querySelector('ul.osef')
                 const resume = data[0]
                 document.querySelector('p.resume').textContent = resume
+                const swiperWrapper = document.querySelector('.mySwiper');
                 data.forEach((element, i) => {
                     if(i === 0) return
-                    const liEl = document.createElement("li")
-                    liEl.textContent = element.content
-                    ulEl.appendChild(liEl)
+                    const slide = document.createElement('div');
+                    slide.className = 'swiper-slide flex start gap-5';
+                    slide.innerHTML = `
+                        <div class="flex gap-5 min-w-[150px]">
+                            <img src="img/netflix.jpg" alt="" class="h-[150px] w-[150px] object-cover rounded-full border-4 border-black">
+                            <div class="space-y-1">
+                                <p class="text-gray-700 font-bold">${element.userName}</p>
+                                <p class="text-gray-700 font-bold">Rating : ${element.rating}/5</p>
+                                <p class="text-black text-lg mt-5 content">${element.content}</p>
+                            </div>
+                        </div>
+                        
+                    `;
+                    swiperWrapper.appendChild(slide);
                 });
             })
             .catch(error => {
