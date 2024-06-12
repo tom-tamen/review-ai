@@ -6,7 +6,11 @@ Get all the reviews:
 GET http://localhost:3000/api/reviews
 ```
 
-L'objet reçu:
+L'objet reçu est un tableau:
+
+le premier élément est le résumé de l'annalyse
+
+les éléments suivants sont des objets représentant les détails de l'annalyse des commentaire sous form d'objets :
 
 ```js
 {
